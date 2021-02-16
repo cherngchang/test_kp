@@ -16,10 +16,10 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         container('docker') {  
-          //sh "docker build -t changking/promo-app:dev ."  // when we run docker in this step, we're running it via a shell on the docker build-pod container, 
-          //sh "docker push changking/promo-app:dev"        // which is just connecting to the host docker deaemon
+          //sh "docker build -t changking/promo-app:dev ."  // it works but i need to push to docker hub after build  
+          //sh "docker push changking/promo-app:dev"        // having issue to push
 	  script {
-            docker.withRegistry( '', 'dockerhub' ) {
+            docker.withRegistry( '', 'dockerhub' ) { //dockerhub is the credential id
 	      def dockerImage = docker.build("changking/promo-app:dev")
               dockerImage.push()
 	    }
