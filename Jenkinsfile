@@ -21,7 +21,7 @@ pipeline {
 	  script {
             docker.withRegistry( '', 'dockerhub' ) {
 	      def dockerImage = docker.build("changking/promo-app:dev")
-              dockerImage.push("changking/promo-app:dev")
+              dockerImage.push()
 	    }
 	  }
         }
